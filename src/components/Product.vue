@@ -8,7 +8,7 @@
         <div class="card">
             <div class="row">
                 <div class="col-md-6"  style="width: 50%;">
-                    <router-link :to="{ name: 'product', params: { productId: records.product.productId} }">{{records.product.name}}</router-link>
+                    <router-link :to="{ name: 'product', params: { productId: records.product.id} }">{{records.product.name}}</router-link>
                     <img class="card-img-top" :src="records.product.image" alt="Card image cap">
                 </div>
                 <div class="card-body col-md-6">
@@ -29,7 +29,7 @@ import axios from 'axios';
         data() {
             return {
                 records: {
-                    page: { name: 'Detail' },
+                    page: { name: 'Details' },
                     product: {}
                 }
             }

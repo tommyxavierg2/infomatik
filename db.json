@@ -28,7 +28,6 @@
   "products": [
     {
       "id": 1,
-      "productId": "1",
       "name": "Product 1",
       "description": "Product test",
       "price": "1,000.00",
@@ -36,7 +35,6 @@
     },
     {
       "id": 2,
-      "productId": "2",
       "name": "Product 2",
       "description": "Product test",
       "price": "1,000.00",
@@ -44,7 +42,6 @@
     },
     {
       "id": 3,
-      "productId": "3",
       "name": "Product 3",
       "description": "Product test",
       "price": "1,000.00",
@@ -52,7 +49,6 @@
     },
     {
       "id": 4,
-      "productId": "4",
       "name": "Product 4",
       "description": "Product test",
       "price": "1,000.00",
@@ -62,21 +58,75 @@
   "orders": [
     {
       "id": 2,
-      "productId": "2",
       "name": "Product 2",
       "description": "Product test",
       "price": "1,000.00",
       "image": "http://placehold.it/180x180",
-      "userId": 1
+      "userId": 2
     },
     {
       "id": 3,
-      "productId": "3",
       "name": "Product 3",
       "description": "Product test",
       "price": "1,000.00",
       "image": "http://placehold.it/180x180",
-      "userId": 1
+      "userId": 2
+    }
+  ],
+  "inventory": [
+    {
+      "id": 1,
+      "userId": 1,
+      "name": "Product 1",
+      "description": "Product test",
+      "price": "1,000.00",
+      "image": "http://placehold.it/180x180",
+      "state": 1
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "name": "Product 2",
+      "description": "Product test",
+      "price": "1,000.00",
+      "image": "http://placehold.it/180x180",
+      "state": 1
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "name": "Product 3",
+      "description": "Product test",
+      "price": "1,000.00",
+      "image": "http://placehold.it/180x180",
+      "state": 1
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "name": "Product 4",
+      "description": "Product test",
+      "price": "1,000.00",
+      "image": "http://placehold.it/180x180",
+      "state": 1
+    },
+    {
+      "name": "asdsadsa",
+      "description": "adsasdadsdasadad",
+      "price": "sdasdasdasdasadsdas",
+      "state": 0,
+      "userId": 1,
+      "image": "",
+      "id": 5
+    },
+    {
+      "name": "asdasdsa",
+      "description": "dasdasasdd",
+      "price": "adsaddaasdsad",
+      "state": 1,
+      "userId": 1,
+      "image": "",
+      "id": 6
     }
   ]
 }

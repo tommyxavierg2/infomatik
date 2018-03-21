@@ -7,8 +7,8 @@
           <router-link to="/" class="nav-items">Foomatik</router-link>
         </b-navbar-brand>
 
-        <b-navbar-nav v-if="checkUserLogged.user.id">
-          <router-link :to="{ name: 'dashboard', params: { id: checkUserLogged.user.id }}" class="nav-items">Dashboard {{checkUserLogged.cart.length}} </router-link>
+        <b-navbar-nav v-if="checkUserLogged.loggedIn">
+          <router-link :to="{ name: 'dashboard', params: { id: checkUserLogged.user.id }}" class="nav-items">Dashboard {{cartItems}} </router-link>
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
@@ -23,8 +23,8 @@
         </b-navbar-nav>
 
         <b-navbar-nav style="padding-left: 15px;">
-          <b-nav-item @click="logout()" v-if="checkUserLogged.user.id">Logout</b-nav-item>
-          <b-nav-item to="/login" v-if="!checkUserLogged.user.id">Login</b-nav-item>
+          <b-nav-item @click="logout()" v-if="checkUserLogged.loggedIn">Logout</b-nav-item>
+          <b-nav-item to="/login" v-if="!checkUserLogged.loggedIn">Login</b-nav-item>
         </b-navbar-nav>
 
 
@@ -53,11 +53,11 @@
         },
         computed: {
             checkUserLogged() {
-                return {
-                    user: this.$store.state.user,
-                    loggedIn: this.$store.state.loggedIn,
-                    cart: this.$store.state.cart
-                };
+                return this.$store.state;
+            },
+
+            cartItems() {
+                return this.checkUserLogged.cart.length ? this.checkUserLogged.cart.length > 0: '';
             }
         },
         methods: {
@@ -84,6 +84,7 @@
             logout() {
                 if (confirm('¿Are you sure about logging out?')) {
                     this.$store.commit('logout');
+                    this.$router.replace('/');
                 }
             }
         },
