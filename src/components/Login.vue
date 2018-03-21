@@ -9,12 +9,12 @@
             <div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" class="form-control" v-model="records.user.email"></input>
+                    <input type="email" class="form-control" v-model="records.user.email">
                 </div>
 
                 <div class="form-group">
                     <label type="password">password</label>
-                    <input class="form-control" type="password" v-model="records.user.password"></input>
+                    <input class="form-control" type="password" v-model="records.user.password">
                 </div>
 
                 <button type="submit" class="btn btn-success" style="margin-top: 10px;">Enter</button>
@@ -26,6 +26,8 @@
 
 <script>
 import axios from 'axios';
+import {api} from '../store/api';
+import store from '../store/store';
 
     export default {
          data() {
@@ -39,10 +41,10 @@ import axios from 'axios';
 
          methods: {
              login() {
-                axios.get(`http://localhost:3000/users?email=${this.records.user.email}&password=${this.records.user.password}`)
+                axios.get(`${api.url}users?email=${this.records.user.email}&password=${this.records.user.password}`)
                     .then(response => {
                         if (response) {
-                            sessionStorage.setItem('userData', response.data[0]);
+                            store.commit('login', response.data[0]);
                             this.$router.replace('/');
                         }
                     })

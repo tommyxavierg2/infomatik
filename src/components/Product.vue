@@ -5,12 +5,17 @@
             <h1>{{records.page.name}}</h1>  
         </div>
     
-        <div class="card" style="width: 18rem;">
-            <router-link :to="{ name: 'product', params: { id: records.product.id} }">{{records.product.name}}</router-link>
-            <img class="card-img-top" :src="records.product.image" alt="Card image cap">
-            <div class="card-body">
-                <p class="card-text">{{records.product.description}}</p>
-                <p>{{records.product.price}}</p>
+        <div class="card">
+            <div class="row">
+                <div class="col-md-6"  style="width: 50%;">
+                    <router-link :to="{ name: 'product', params: { productId: records.product.productId} }">{{records.product.name}}</router-link>
+                    <img class="card-img-top" :src="records.product.image" alt="Card image cap">
+                </div>
+                <div class="card-body col-md-6">
+                    <p class="card-text">{{records.product.description}}</p>
+                    <p>{{records.product.price}}</p>
+                </div>
+
             </div>
         </div>
             
@@ -31,10 +36,10 @@ import axios from 'axios';
         },
 
         methods: {
-            getProduct(id) {
-                axios.get(`http://localhost:3000/products/${id}`)
+            getProduct(productId) {
+                axios.get(`http://localhost:3000/products/${productId}`)
                     .then(res => this.records.product = res.data)
-                    .catch(res => alert(err));
+                    .catch(err => alert(err));
             },
         },
 
