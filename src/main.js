@@ -11,10 +11,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import fontawesome from '@fortawesome/fontawesome'
-import { faEnvelope, faHome, faGraduationCap, faList, faSpinner, faShoppingCart, faThList, faCreditCard, faSignOutAlt, faTrash, faEdit } from '@fortawesome/fontawesome-free-solid'
+import { faEnvelope, faHome, faGraduationCap, faList, faSpinner, faShoppingCart, faThList, faCreditCard, faSignOutAlt, faTrash, faEdit, faWrench } from '@fortawesome/fontawesome-free-solid'
 
 fontawesome.library.add(
-  faEnvelope, faHome, faGraduationCap, faList, faSpinner, faShoppingCart, faThList, faCreditCard, faSignOutAlt, faTrash, faEdit
+  faEnvelope, faHome, faGraduationCap, faList, faSpinner, faShoppingCart, faThList, faCreditCard, faSignOutAlt, faTrash, faEdit, faWrench
 )
 
 Vue.component('icon', FontAwesomeIcon);

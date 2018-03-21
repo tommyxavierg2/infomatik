@@ -5,7 +5,7 @@ import Home from '@/components/Home';
 import Product from '@/components/Product';
 import Login from '@/components/Login';
 import Dashboard from '@/components/Dashboard';
-import Checkout from '@/components/Checkout';
+import Settings from '@/components/Settings';
 
 Vue.use(Router)
 
@@ -27,9 +27,9 @@ export default new Router({
       component: Product
     },
     {
-      path: '/checkout/:id',
-      name: 'checkout/:id',
-      component: Checkout
+      path: '/settings',
+      name: 'settings',
+      component: Settings
     },
     {
       path: '/dashboard',

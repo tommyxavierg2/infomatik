@@ -8,7 +8,7 @@
         </b-navbar-brand>
 
         <b-navbar-nav v-if="checkUserLogged.loggedIn">
-          <router-link :to="{ name: 'dashboard', params: { id: checkUserLogged.user.id }}" class="nav-items">Dashboard {{cartItems}} </router-link>
+          <router-link :to="{ name: 'dashboard', params: { id: checkUserLogged.user.id }}" class="nav-items">Dashboard {{checkUserLogged.cart.length}} </router-link>
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
@@ -22,9 +22,17 @@
             
         </b-navbar-nav>
 
-        <b-navbar-nav style="padding-left: 15px;">
-          <b-nav-item @click="logout()" v-if="checkUserLogged.loggedIn">Logout</b-nav-item>
-          <b-nav-item to="/login" v-if="!checkUserLogged.loggedIn">Login</b-nav-item>
+        <b-nav-item-dropdown right>
+          <template slot="button-content">
+            <em>Menu</em>
+          </template>
+            <router-link to="/settings" v-if="checkUserLogged.loggedIn"><icon icon="wrench"/>Settings</router-link>
+            <b-dropdown-item to="/login" v-if="!checkUserLogged.loggedIn">Login</b-dropdown-item>
+            <b-dropdown-item @click="logout()" v-if="checkUserLogged.loggedIn">Logout</b-dropdown-item>
+        </b-nav-item-dropdown>
+
+        <b-navbar-nav >
+
         </b-navbar-nav>
 
 

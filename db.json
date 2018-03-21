@@ -55,10 +55,11 @@
       "image": "http://placehold.it/180x180"
     }
   ],
-  "orders": [
+  "cart": [
     {
       "id": 2,
       "name": "Product 2",
+      "state": 1,
       "description": "Product test",
       "price": "1,000.00",
       "image": "http://placehold.it/180x180",
@@ -67,9 +68,19 @@
     {
       "id": 3,
       "name": "Product 3",
+      "state": 1,
       "description": "Product test",
       "price": "1,000.00",
       "image": "http://placehold.it/180x180",
+      "userId": 2
+    },
+    {
+      "id": 1,
+      "name": "Product 1",
+      "description": "Product test",
+      "price": "1,000.00",
+      "image": "http://placehold.it/180x180",
+      "state": 1,
       "userId": 2
     }
   ],
@@ -127,6 +138,32 @@
       "userId": 1,
       "image": "",
       "id": 6
+    }
+  ],
+  "orders": [
+    {
+      "userId": 2,
+      "items": [
+        {
+          "id": 2,
+          "name": "Product 2",
+          "state": 2,
+          "description": "Product test",
+          "price": "1,000.00",
+          "image": "http://placehold.it/180x180",
+          "userId": 2
+        },
+        {
+          "id": 1,
+          "name": "Product 1",
+          "description": "Product test",
+          "price": "1,000.00",
+          "image": "http://placehold.it/180x180",
+          "state": 2,
+          "userId": 2
+        }
+      ],
+      "id": 1
     }
   ]
 }

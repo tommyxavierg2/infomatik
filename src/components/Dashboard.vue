@@ -6,10 +6,26 @@
 
         <b-card no-body v-if="checkUserLogged.loggedIn">
             <b-tabs card v-model="records.page.tabIndex">
+                <b-tab v-if="!checkUserLogged.user.type" title="Cart" active>
+                    <div class="card" v-if="!checkUserLogged.user.type" style="margin: 75px; padding: 40px;">
+                        <h1 style="margin-bottom: 15px;">Your Cart</h1>
+                        <div class="row" v-for="item in records.user.cartItems" :key="item.id" style="border-bottom:1px solid gray; padding-bottom: 20px; margin-bottom: 20px;">
+                            <div class="col-md-6">
+                                <router-link :to="{ path: `/product/${item.id}`}">{{item.name}}</router-link>
+                                <img class="card-img-top" :src="item.image" alt="Card image cap" style="height: 150px;">
+                            </div>
+                            <div class="card-body col-md-6">
+                                <p class="card-text">{{item.description}}</p>
+                                <p>{{item.price}}</p>
+                            </div>
+                        </div>
+                        <button v-if="records.user.cartItems.length" type="button" class="btn btn-success btn-block" style="margin-top: 10px;" @click="checkout()">Checkout</button>
+                    </div>
+                </b-tab>
                 <b-tab v-if="!checkUserLogged.user.type" title="Orders" active>
                     <div class="card" v-if="!checkUserLogged.user.type" style="margin: 75px; padding: 40px;">
                         <h1 style="margin-bottom: 15px;">Your Orders</h1>
-                        <div class="row" v-for="item in records.user.orders" :key="item.id" style="border-bottom:1px solid gray; padding-bottom: 20px; margin-bottom: 20px;">
+                        <div class="row" v-for="item in records.user.orders.items" :key="item.id" style="border-bottom:1px solid gray; padding-bottom: 20px; margin-bottom: 20px;">
                             <div class="col-md-6">
                                 <router-link :to="{ path: `/product/${item.id}`}">{{item.name}}</router-link>
                                 <img class="card-img-top" :src="item.image" alt="Card image cap" style="height: 150px;">
@@ -83,8 +99,9 @@ import {api} from '../store/api';
                 records: {
                     page: { name: 'Dashboard', tabIndex: 0 },
                     user: {
-                        orders: [],
+                        cartItems: [],
                         inventory: [],
+                        orders: [],
                         editing: false,
                         newProduct: {
                             name: '',
@@ -112,12 +129,24 @@ import {api} from '../store/api';
                     })
                     .catch(err => alert(err));
             },
+            
+            getOrders() {
+                 return axios.get(`${api.url}orders?userId=${this.$route.params.id}`)
+                    .then(res => {
+                        this.records.user.orders = res.data[0];
+                        console.log(this.records.user.orders)
+                    })
+                    .catch(err => alert(err));
+            }
         },
 
         methods: {
-            getOrders() {
-                axios.get(`${api.url}orders?userId=${this.$route.params.id}`)
-                    .then(res => this.records.user.orders = res.data)
+            getCartItems() {
+                axios.get(`${api.url}cart?userId=${this.$route.params.id}`)
+                    .then(res => {
+                        this.records.user.cartItems = res.data;
+                        this.$store.commit('getOrders', res.data)
+                    })
                     .catch(err => alert(err))     
             },
 
@@ -158,9 +187,27 @@ import {api} from '../store/api';
                 }
             },
 
+            checkout() {
+                let order = {};
+                order.userId = this.$route.params.id;
+                order.items = [];
+                this.records.user.cartItems.forEach((cartItem, index) => {
+                    this.records.user.cartItems[index].state = 2;
+                    order.items.push(cartItem);
+                    this.records.user.cartItems.splice(index, 1);
+                });
+                axios.post(`${api.url}orders`, order)
+                    .then(res => {
+                        this.records.user.orders = [];
+                        alert(`Order ${res.data.id} has been placed and will be delivered withing 3 business days`); 
+                    })
+                    .catch(err => alert(err));
+            },
+
             init() {
-                this.getOrders();
+                this.getCartItems();
                 this.getInventory;
+                this.getOrders;
             }
         },
         

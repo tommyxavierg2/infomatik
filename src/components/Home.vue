@@ -14,7 +14,7 @@
                         <p class="card-text">{{product.description}}</p>
                         <p>RD$ {{product.price}}</p>
                     </div>
-                    <button v-if="checkUserLogged.loggedIn" class="btn btn-info btn-block" @click="addToCart(product)"><icon icon="cart-plus"/> </button>
+                    <button v-if="!checkUserLogged.user.type" class="btn btn-info btn-block" @click="addToCart(product)"><icon icon="cart-plus"/> </button>
                 </div>
             </div>
         </div>
@@ -42,10 +42,6 @@ import {api} from '../store/api';
          computed: {
              checkUserLogged() {
                 return this.$store.state
-             },
-
-             checkUserType() {
-                return this.checkUserLogged.loggedIn && !this.checkUserLogged.user.type ? true : false
              }
          },
 
@@ -59,8 +55,9 @@ import {api} from '../store/api';
              addToCart(product) {
                  if (confirm(`¿Are you sure about adding the ${product.name} to your cart?`)) {
                      let tempOrder = product;
+                     tempOrder.state = 1;
                      tempOrder.userId = this.$store.state.user.id;
-                     axios.post(`${api.url}orders`, tempOrder)
+                     axios.post(`${api.url}cart`, tempOrder)
                         .then(res => {
                             alert(`A ${product.name} pricing: ${product.price}, has been added to your cart`);
                             this.$store.commit('addCartItem', product);

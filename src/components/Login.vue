@@ -34,7 +34,9 @@ import store from '../store/store';
              return {
                  records: {
                     page: { name: 'Login' },
-                    user: { email: '', password: '' }
+                    user: { 
+                        email: 'informatik@testing.com',
+                        password: '321321' }
                  },
              }
          },
