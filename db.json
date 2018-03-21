@@ -1,0 +1,59 @@
+{
+  "users":  [ 
+      {
+        "_id": 1,
+        "type": 1,
+        "email": "test@test.com",
+        "password": "321321",
+        "state": "active",
+        "balance": "$3,565.45",
+        "image": "http://placehold.it/180x180",
+        "company": "Infomatik",
+        "phone": "00000000000",
+        "address": "556 Covert Street, Statenville, Northern Mariana Islands, 6263"       
+      },
+    {
+        "_id": 2,
+        "type": 0,
+        "password": "321321",
+        "state": "active",
+        "balance": "$3,565.45",
+        "image": "http://placehold.it/180x180",
+        "company": "Infomatik",
+        "email": "informatik@testing.com",
+        "phone": "00000000000",
+        "address": "556 Covert Street, Statenville, Northern Mariana Islands, 6263"       
+      }
+    ],
+
+  "products": [
+    { 
+      "id": "1",
+      "name": "Product 1",
+      "description": "Product test",
+      "price": "1,000.00",
+      "image": "http://placehold.it/180x180"
+    },
+    { 
+      "id": "2",
+      "name": "Product 2",
+      "description": "Product test",
+      "price": "1,000.00",
+      "image": "http://placehold.it/180x180"
+    },
+    { 
+      "id": "3",
+      "name": "Product 3",
+      "description": "Product test",
+      "price": "1,000.00",
+      "image": "http://placehold.it/180x180"
+    },
+    { 
+      "id": "4",
+      "name": "Product 4",
+      "description": "Product test",
+      "price": "1,000.00",
+      "image": "http://placehold.it/180x180"
+    }
+  ]
+}
