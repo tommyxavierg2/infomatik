@@ -7,7 +7,7 @@
         <b-card no-body v-if="checkUserLogged.loggedIn">
             <b-tabs card v-model="records.page.tabIndex">
                 <b-tab v-if="!checkUserLogged.user.type" title="Cart" active>
-                    <div class="card" v-if="!checkUserLogged.user.type" style="margin: 75px; padding: 40px;">
+                    <div class="card" v-if="!checkUserLogged.user.type">
                         <h1 style="margin-bottom: 15px;">Your Cart</h1>
                         <div class="row" v-for="item in records.user.cartItems" :key="item.id" style="border-bottom:1px solid gray; padding-bottom: 20px; margin-bottom: 20px;">
                             <div class="col-md-6">
@@ -23,7 +23,7 @@
                     </div>
                 </b-tab>
                 <b-tab v-if="!checkUserLogged.user.type" title="Orders" active>
-                    <div class="card" v-if="!checkUserLogged.user.type" style="margin: 75px; padding: 40px;">
+                    <div class="card" v-if="!checkUserLogged.user.type">
                         <h1 style="margin-bottom: 15px;">Your Orders</h1>
                         <div class="row" v-for="item in records.user.orders.items" :key="item.id" style="border-bottom:1px solid gray; padding-bottom: 20px; margin-bottom: 20px;">
                             <div class="col-md-6">
@@ -132,10 +132,7 @@ import {api} from '../store/api';
             
             getOrders() {
                  return axios.get(`${api.url}orders?userId=${this.$route.params.id}`)
-                    .then(res => {
-                        this.records.user.orders = res.data[0];
-                        console.log(this.records.user.orders)
-                    })
+                    .then(res => this.records.user.orders = res.data[0])
                     .catch(err => alert(err));
             }
         },
